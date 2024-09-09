@@ -1,0 +1,75 @@
+
+# Pinout for the iCE40-HX8K Breakout Board
+
+set_io board_clk J3
+set_io board_rst B11
+
+#set_io flash_csb R12
+#set_io flash_clk R11
+#set_io flash_io0 P12
+#set_io flash_io1 P11
+
+# for QSPI mode the flash chip on the iCE40-HX8K Breakout Board
+# must be replaced with one that supports QSPI and the IO2 and IO3
+# pins must be soldered to T9 and P8 (center on J3)
+#set_io flash_io2 T9
+#set_io flash_io3 P8
+
+set_io ser_tx B12
+set_io ser_rx B10
+
+set_io leds[7] B5  # D9
+set_io leds[6] B4  # D8
+set_io leds[5] A2  # D7
+set_io leds[4] A1  # D6
+set_io leds[3] C5  # D5
+set_io leds[2] C4  # D4
+set_io leds[1] B3  # D3
+set_io leds[0] C3  # D2
+
+set_io GBA_VDD    P2
+set_io GBA_CLK    P1
+set_io GBA_nWR    N2
+set_io GBA_nRD    N3
+set_io GBA_nCS    M1
+set_io GBA_AD[0]  M2
+set_io GBA_AD[1]  L1
+set_io GBA_AD[2]  L3
+set_io GBA_AD[3]  K1
+set_io GBA_AD[4]  K3
+set_io GBA_AD[5]  J1
+set_io GBA_AD[6]  J2
+set_io GBA_AD[7]  R5 # J3 taken by clk
+set_io GBA_AD[8]  H2
+set_io GBA_AD[9]  H1
+set_io GBA_AD[10] G2
+set_io GBA_AD[11] G1
+set_io GBA_AD[12] F2
+set_io GBA_AD[13] F1
+set_io GBA_AD[14] E2
+set_io GBA_AD[15] D2
+set_io GBA_A[0]   D1
+set_io GBA_A[1]   C2
+set_io GBA_A[2]   C1
+set_io GBA_A[3]   B2
+set_io GBA_A[4]   B1
+set_io GBA_A[5]   R4
+set_io GBA_A[6]   R3
+set_io GBA_A[7]   T3
+set_io GBA_nCS2   R2
+set_io GBA_nREQ   T2
+
+set_io sd_cs   R9
+set_io sd_sck  P8
+set_io sd_mosi P9
+set_io sd_miso T9
+set_io sd_det  T8
+
+set_io debug[0] E14
+set_io debug[1] D15
+set_io debug[2] D14
+set_io debug[3] B16
+set_io debug[4] F16
+set_io debug[5] E16
+set_io debug[6] D16
+set_io debug[7] C16

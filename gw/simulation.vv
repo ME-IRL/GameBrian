@@ -1,0 +1,150 @@
+`timescale 100ps/100ps
+
+module TestBench;
+    reg clk = 0;
+    always #25 clk = !clk;
+
+    reg rst = 1;
+
+    wire [7:0]    leds;
+
+    reg           GBA_CLK;
+    reg           GBA_nWR;
+    reg           GBA_nRD;
+    reg           GBA_nCS;
+    reg           GBA_VDD;
+    wire [15:0]   GBA_AD;
+    wire [7:0]    GBA_A;
+    reg           GBA_nCS2;
+    wire          GBA_nREQ;
+
+    wire          sd_cs;
+    wire          sd_sck;
+    wire          sd_mosi;
+    reg           sd_miso;
+    wire          sd_det;
+
+    GameBrian gb(
+        .board_clk(clk),
+        .board_rst(rst),
+        .leds     (leds     ),
+                   
+        .GBA_CLK  (GBA_CLK  ),
+        .GBA_nWR  (GBA_nWR  ),
+        .GBA_nRD  (GBA_nRD  ),
+        .GBA_nCS  (GBA_nCS  ),
+        .GBA_VDD  (GBA_VDD  ),
+        .GBA_AD   (GBA_AD   ),
+        .GBA_A    (GBA_A    ),
+        .GBA_nCS2 (GBA_nCS2 ),
+        .GBA_nREQ (GBA_nREQ ),
+                   
+        .sd_cs    (sd_cs    ),
+        .sd_sck   (sd_sck   ),
+        .sd_mosi  (sd_mosi  ),
+        .sd_miso  (sd_miso  ),
+        .sd_det   (sd_det   )
+    );
+
+    reg  [15:0] AD_drive;
+    wire [15:0] AD_read;
+    assign GBA_AD = AD_drive;
+    assign AD_read = GBA_AD;
+
+    reg  [7:0] A_drive;
+    wire [7:0] A_read;
+    assign GBA_A = A_drive;
+    assign A_read = GBA_A;
+
+    initial begin
+        $dumpfile("GameBrian.vcd");
+        $dumpvars(2, gb);
+
+        AD_drive <= 16'hFFFF;
+        A_drive <= 8'hFF;
+        GBA_nCS <= 1;
+        GBA_nCS2 <= 1;
+        GBA_nRD <= 1;
+        GBA_nWR <= 1;
+
+        #25 rst <= 0;
+        GBA_VDD <= 1;
+
+        // ROM Sequential Read
+        #250
+        AD_drive <= 0;
+        A_drive <= 0;
+        #5
+        GBA_nCS <= 0;
+        #1200
+        AD_drive <= 16'hz;
+        GBA_nRD <= 0;
+        #1200
+        GBA_nRD <= 1;
+        #1200
+        GBA_nRD <= 0;
+        #1200
+        GBA_nRD <= 1;
+        #1200
+        GBA_nRD <= 0;
+        #1200
+        GBA_nRD <= 1;
+        GBA_nCS <= 1;
+        AD_drive <= 16'hFFFF;
+        
+        // ROM Non-Sequential Read
+        #2500
+        AD_drive <= 16'h0010;
+        A_drive <= 0;
+        #5
+        GBA_nCS <= 0;
+        #1200
+        AD_drive <= 16'hz;
+        GBA_nRD <= 0;
+        #1200
+        GBA_nRD <= 1;
+        GBA_nCS <= 1;
+        AD_drive <= 16'hFFFF;
+        
+        // RAM Write
+        #5000
+        GBA_nCS2 <= 0;
+        #100
+        AD_drive <= 8'h00;
+        A_drive <= 8'hAA;
+        #5
+        GBA_nWR <= 0;
+        #1200
+        GBA_nWR <= 1;
+
+        sd_miso <= 1;
+        #100
+        AD_drive <= 8'h01;
+        A_drive <= 8'h01;
+        #5
+        GBA_nWR <= 0;
+        #1200
+        GBA_nWR <= 1;
+
+        #50_000_0
+
+        //AD_drive <= 8'h00;
+        //A_drive <= 8'h55;
+        //#5
+        //GBA_nWR <= 0;
+        //#1200
+        //GBA_nWR <= 1;
+
+        //#100
+        //AD_drive <= 8'h01;
+        //A_drive <= 8'h01;
+        //#5
+        //GBA_nWR <= 0;
+        //#1200
+        //GBA_nWR <= 1;
+
+        //#100_000_0
+
+        $finish();
+    end
+endmodule
