@@ -15219,7 +15219,7 @@
 		(uuid "37d1fad5-2951-476c-915d-92253c080673")
 	)
 	(junction
-		(at 439.42 96.52)
+		(at 588.01 276.86)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "3bdf62b4-4dc0-4701-9b03-ca818cf009ac")
@@ -15279,7 +15279,7 @@
 		(uuid "53a462be-1b8b-486f-a30a-c30618d37c16")
 	)
 	(junction
-		(at 443.23 91.44)
+		(at 591.82 271.78)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5406f64f-c3d8-4cb8-b0ee-9775133238c9")
@@ -15621,7 +15621,7 @@
 		(uuid "f250ccf7-abf9-4a3f-9c56-c0de79e648d9")
 	)
 	(junction
-		(at 473.71 91.44)
+		(at 622.3 271.78)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fb4ef682-bd67-43b2-a2fc-8b95009a320b")
@@ -15858,7 +15858,7 @@
 	)
 	(wire
 		(pts
-			(xy 439.42 96.52) (xy 443.23 96.52)
+			(xy 588.01 276.86) (xy 591.82 276.86)
 		)
 		(stroke
 			(width 0)
@@ -16568,7 +16568,7 @@
 	)
 	(wire
 		(pts
-			(xy 473.71 91.44) (xy 473.71 92.71)
+			(xy 622.3 271.78) (xy 622.3 273.05)
 		)
 		(stroke
 			(width 0)
@@ -16678,7 +16678,7 @@
 	)
 	(wire
 		(pts
-			(xy 443.23 91.44) (xy 473.71 91.44)
+			(xy 591.82 271.78) (xy 622.3 271.78)
 		)
 		(stroke
 			(width 0)
@@ -16808,7 +16808,7 @@
 	)
 	(wire
 		(pts
-			(xy 439.42 91.44) (xy 443.23 91.44)
+			(xy 588.01 271.78) (xy 591.82 271.78)
 		)
 		(stroke
 			(width 0)
@@ -16968,7 +16968,7 @@
 	)
 	(wire
 		(pts
-			(xy 439.42 96.52) (xy 439.42 99.06)
+			(xy 588.01 276.86) (xy 588.01 279.4)
 		)
 		(stroke
 			(width 0)
@@ -20501,7 +20501,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 439.42 99.06 0)
+		(at 588.01 279.4 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -20510,7 +20510,7 @@
 		(fields_autoplaced yes)
 		(uuid "0b105395-27e1-4330-9c8f-9a628ab9e53e")
 		(property "Reference" "#PWR064"
-			(at 439.42 105.41 0)
+			(at 588.01 285.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20519,7 +20519,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 439.42 104.14 0)
+			(at 588.01 284.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20528,7 +20528,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 439.42 99.06 0)
+			(at 588.01 279.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20537,7 +20537,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 439.42 99.06 0)
+			(at 588.01 279.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20546,7 +20546,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 439.42 99.06 0)
+			(at 588.01 279.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21058,7 +21058,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 439.42 93.98 0)
+		(at 588.01 274.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -21066,7 +21066,7 @@
 		(dnp no)
 		(uuid "1201dcb7-22e7-490d-a1f9-95bf7238339e")
 		(property "Reference" "C14"
-			(at 436.88 92.964 0)
+			(at 585.47 273.304 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21075,7 +21075,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 436.88 95.2562 0)
+			(at 585.47 275.5962 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21084,7 +21084,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 439.42 93.98 0)
+			(at 588.01 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21093,7 +21093,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 439.42 93.98 0)
+			(at 588.01 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21102,7 +21102,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 439.42 93.98 0)
+			(at 588.01 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -21111,7 +21111,7 @@
 			)
 		)
 		(property "DIGIKEY" "490-GRM155R60J106ME05DCT-ND"
-			(at 439.42 93.98 0)
+			(at 588.01 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24654,7 +24654,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 443.23 93.98 0)
+		(at 591.82 274.32 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -24663,7 +24663,7 @@
 		(dnp no)
 		(uuid "3a222768-767c-417c-badc-b237b9e3e69a")
 		(property "Reference" "C15"
-			(at 445.77 92.7162 0)
+			(at 594.36 273.0562 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24672,7 +24672,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 445.77 95.2562 0)
+			(at 594.36 275.5962 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24681,7 +24681,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 443.23 93.98 0)
+			(at 591.82 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24690,7 +24690,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 443.23 93.98 0)
+			(at 591.82 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24699,7 +24699,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 443.23 93.98 0)
+			(at 591.82 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -24708,7 +24708,7 @@
 			)
 		)
 		(property "DIGIKEY" "490-6328-1-ND"
-			(at 443.23 93.98 0)
+			(at 591.82 274.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27472,7 +27472,7 @@
 	)
 	(symbol
 		(lib_id "GameBrian:LFE5U-45F-7BG256x")
-		(at 438.15 115.57 0)
+		(at 586.74 295.91 0)
 		(unit 2)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -27480,7 +27480,7 @@
 		(dnp no)
 		(uuid "51bd39ff-574b-4558-a206-66758e74850e")
 		(property "Reference" "U1"
-			(at 471.678 178.054 0)
+			(at 620.268 358.394 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -27489,7 +27489,7 @@
 			)
 		)
 		(property "Value" "LFE5U-45F-7BG256x"
-			(at 442.976 178.054 0)
+			(at 591.566 358.394 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -27498,7 +27498,7 @@
 			)
 		)
 		(property "Footprint" "Package_BGA:BGA-256_14.0x14.0mm_Layout16x16_P0.8mm_Ball0.45mm_Pad0.32mm_NSMD"
-			(at 441.96 114.3 0)
+			(at 590.55 294.64 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -27508,7 +27508,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.latticesemi.com/view_document?document_id=50461"
-			(at 441.96 119.38 0)
+			(at 590.55 299.72 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -27518,7 +27518,7 @@
 			)
 		)
 		(property "Description" "ECP5 FPGA, 45K LUTs, 1.2V, BGA-256"
-			(at 438.15 115.57 0)
+			(at 586.74 295.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27527,7 +27527,7 @@
 			)
 		)
 		(property "DIGIKEY" "LFE5U-45F-7BG256C-ND"
-			(at 438.15 115.57 0)
+			(at 586.74 295.91 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -29999,10 +29999,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "7425e390-4ed9-46e5-a68f-c91962839edd")
 		(property "Reference" "U1"
-			(at 379.73 167.6399 0)
+			(at 374.142 219.964 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -30011,7 +30010,7 @@
 			)
 		)
 		(property "Value" "LFE5U-45F-7BG256x"
-			(at 379.73 170.1799 0)
+			(at 335.026 219.964 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -33157,10 +33156,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "8ab09a79-e712-45f2-8d21-7197264207b7")
 		(property "Reference" "U1"
-			(at 360.68 325.1199 0)
+			(at 354.838 359.664 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -33169,7 +33167,7 @@
 			)
 		)
 		(property "Value" "LFE5U-45F-7BG256x"
-			(at 360.68 327.6599 0)
+			(at 310.896 359.664 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -35592,10 +35590,9 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "a7f91268-1722-42c1-86ec-92171b4ae2fd")
 		(property "Reference" "U1"
-			(at 543.56 316.2299 0)
+			(at 537.464 368.554 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -35604,7 +35601,7 @@
 			)
 		)
 		(property "Value" "LFE5U-45F-7BG256x"
-			(at 543.56 318.7699 0)
+			(at 496.316 368.554 0)
 			(effects
 				(font
 					(size 1.524 1.524)
@@ -40510,7 +40507,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 473.71 91.44 0)
+		(at 622.3 271.78 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -40518,7 +40515,7 @@
 		(dnp no)
 		(uuid "e3a9f5e8-9a76-4585-991f-174892cf44e2")
 		(property "Reference" "#PWR052"
-			(at 473.71 95.25 0)
+			(at 622.3 275.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40527,7 +40524,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 473.71 87.376 0)
+			(at 622.3 267.716 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40535,7 +40532,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 473.71 91.44 0)
+			(at 622.3 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40544,7 +40541,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 473.71 91.44 0)
+			(at 622.3 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -40553,7 +40550,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 473.71 91.44 0)
+			(at 622.3 271.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
