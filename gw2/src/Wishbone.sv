@@ -4,7 +4,6 @@ interface Wishbone_bus #(
     input clk,
     input rst
 );
-
     logic [WIDTH-1:0]       adr;
     logic [WIDTH-1:0]       dat_miso;
     logic [WIDTH-1:0]       dat_mosi;
@@ -19,6 +18,9 @@ interface Wishbone_bus #(
     logic rty;
 
     modport M (
+        input clk,
+        input rst,
+
         output adr,
         input  dat_miso,
         output dat_mosi,
@@ -33,6 +35,9 @@ interface Wishbone_bus #(
     );
 
     modport S (
+        input clk,
+        input rst,
+
         input  adr,
         output dat_miso,
         input  dat_mosi,
