@@ -16,6 +16,8 @@ SOURCES = $(PLL_FILES) $(TOP) $(SV_SOURCES)
 SIM = spi
 SIM_VCD = $(foreach f,$(SIM),$(BUILD_DIR)/$f.vcd)
 
+REV = $(shell printf "%d" 0x$(shell git rev-parse --short HEAD))
+
 $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 	@echo Generating $* MHz PLL...
 	@ecppll -n PLL$* \
@@ -27,13 +29,6 @@ $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 
 .PHONY: prog flash data sim clean
 .PRECIOUS: $(BUILD_DIR)/$(TARGET).bit $(BUILD_DIR)/$(TARGET).v
-
-# prog2: $(BUILD_DIR)/$(TARGET).svf
-# 	# openocd -f ${TRELLIS}/misc/openocd/ecp5-evn.cfg -c "transport select jtag; init; svf $<; exit"
-# 	# openocd -f ecp5-evn.cfg -c "transport select jtag; init; svf $<; exit"
-# 	openFPGALoader -b ecp5_evn -f build/GameBrian.bit
-
-#$(BUILD_DIR)/%.svf: $(BUILD_DIR)/%.bit ;
 
 prog: $(BUILD_DIR)/$(TARGET).bit
 	@echo Programming to SRAM...
@@ -51,9 +46,8 @@ data: $(DATA)
 	@openFPGALoader -b ecp5_evn -f $^ -o 0x100000
 
 $(BUILD_DIR)/%.bit: $(BUILD_DIR)/%.cfg
-	@#ecppack --svf-rowsize 100000 --svf $(BUILD_DIR)/$*.svf $^ $@
-	@echo Packing to bitstream...
-	@ecppack $^ $@ #--spimode qspi
+	@echo Packing to bitstream \(USERCODE: $(REV)\)...
+	@ecppack $^ $@ --usercode $(REV)
 
 $(BUILD_DIR)/%.cfg: src/board/$(BOARD).lpf $(BUILD_DIR)/%.json
 	@echo Placing and routing using nextpnr...
