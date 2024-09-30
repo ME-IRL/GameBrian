@@ -1,7 +1,5 @@
-import wishbone::*;
-
 module GameBrian #(
-    parameter CLK_FREQ = 200_000_000,
+    parameter CLK_FREQ = 200_000_000
 ) (
     input  wire          clk,
     input  wire          rst,
@@ -17,12 +15,11 @@ module GameBrian #(
     input  wire          GBA_nCS2,
     output wire          GBA_nREQ,
 
-    input  wire          spi_clk,
-    output wire          sd_cs,
-    output wire          sd_sck,
-    output wire          sd_mosi,
-    input  wire          sd_miso,
     input  wire          sd_det,
+    output wire          sd_cs,
+    output wire          spi_sck,
+    output wire          spi_mosi,
+    input  wire          spi_miso,
 
     output wire          ser_tx,
     input  wire          ser_rx,
@@ -39,11 +36,10 @@ module GameBrian #(
     ) b (
         .clk(clk),
         .rst(rst),
-        .leds(leds),
+        .leds(leds)
     );
 
-    Wishbone_bus bus(clk, rst);
-
-    CPU_WB core (bus.M);
+    // UART Serial
+    assign ser_tx = ser_rx;
 
 endmodule

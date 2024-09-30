@@ -19,11 +19,10 @@ module top (
     input  wire          GBA_nCS2,
     output wire          GBA_nREQ,
 
-    output wire          sd_cs,
-    output wire          sd_sck,
-    output wire          sd_mosi,
-    input  wire          sd_miso,
     input  wire          sd_det,
+    output wire          sd_cs,
+    output wire          spi_mosi,
+    input  wire          spi_miso,
 
     output wire          ser_tx,
     input  wire          ser_rx,
@@ -48,13 +47,18 @@ module top (
     assign board_clk_en = 1'b1;
 
     // With PLL
-    wire clk, clk_spi, pll_locked;
+    wire clk, pll_locked;
     wire rst = (!pll_locked) || rst_actual;
     PLL200 pll (
         .clk_in   (board_clk ),
         .clk_out  (clk       ),
-        .clk_spi  (clk_spi   ),
-        .locked   (pll_locked)
+    );
+
+    reg zero = 0;
+    wire UCLK;
+    USRMCLK spi_clk_u (
+        .USRMCLKI(UCLK),
+        .USRMCLKTS(zero)
     );
 
     GameBrian #(
@@ -74,12 +78,11 @@ module top (
         .GBA_nCS2 (GBA_nCS2),
         .GBA_nREQ (GBA_nREQ),
 
-        .spi_clk  (clk_spi ),
-        .sd_cs    (sd_cs   ),
-        .sd_sck   (sd_sck  ),
-        .sd_mosi  (sd_mosi ),
-        .sd_miso  (sd_miso ),
         .sd_det   (sd_det  ),
+        .sd_cs    (sd_cs   ),
+        .spi_sck  (UCLK    ),
+        .spi_mosi (spi_mosi ),
+        .spi_miso (spi_miso ),
 
         .ser_tx   (ser_tx  ),
         .ser_rx   (ser_rx  ),
@@ -87,4 +90,8 @@ module top (
         .debug    (debug   )
     );
 
+endmodule
+
+module USRMCLK (USRMCLKI, USRMCLKTS);
+    input USRMCLKI, USRMCLKTS;
 endmodule

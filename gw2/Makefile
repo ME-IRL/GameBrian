@@ -12,6 +12,9 @@ SV_SOURCES = $(wildcard src/*.sv)
 TOP = src/board/$(BOARD).v
 SOURCES = $(PLL_FILES) $(TOP) $(SV_SOURCES)
 
+SIM = spi
+SIM_VCD = $(foreach f,$(SIM),$(BUILD_DIR)/$f.vcd)
+
 $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 	@echo Generating $* MHz PLL...
 	@ecppll -n PLL$* \
@@ -19,11 +22,10 @@ $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 	-i $(IN_FREQ) \
 	--clkout0_name clk_out \
 	-o $* \
-	--clkout1_name clk_spi \
-	--clkout1 1 \
 	-f $@ > /dev/null
 
-.PHONY: prog flash $(TARGET) clean
+.PHONY: prog flash sim clean
+.PRECIOUS: $(BUILD_DIR)/$(TARGET).bit $(BUILD_DIR)/$(TARGET).v
 
 # prog2: $(BUILD_DIR)/$(TARGET).svf
 # 	# openocd -f ${TRELLIS}/misc/openocd/ecp5-evn.cfg -c "transport select jtag; init; svf $<; exit"
@@ -33,12 +35,12 @@ $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 #$(BUILD_DIR)/%.svf: $(BUILD_DIR)/%.bit ;
 
 prog: $(BUILD_DIR)/$(TARGET).bit
-	@# ecpprog -S $^
+	@#ecpprog -S $^
 	@echo Programming to SRAM...
 	@openFPGALoader -b ecp5_evn $^
 
 flash: $(BUILD_DIR)/$(TARGET).bit
-	@# ecpprog $^
+	@#ecpprog $^
 	@echo Programming to flash...
 	@openFPGALoader -b ecp5_evn -f $^
 
@@ -63,6 +65,16 @@ $(BUILD_DIR)/%.v: $(SV_SOURCES) | $(BUILD_DIR)
 
 $(BUILD_DIR):
 	@mkdir $(BUILD_DIR)
+
+sim: $(SIM_VCD)
+
+$(BUILD_DIR)/%.vcd: $(SV_SOURCES) | $(BUILD_DIR)
+	verilator --binary $^ --top $*_tb -sv \
+	--trace --no-trace-top -j 8 \
+	--timescale-override 1ns/1ns \
+	-Mdir $(BUILD_DIR)/verilator
+	$(BUILD_DIR)/verilator/V$*_tb
+
 
 clean:
 	@echo Removing build files...

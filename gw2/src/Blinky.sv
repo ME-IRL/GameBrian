@@ -43,7 +43,7 @@ module Blinky #(
     wire led_clk;
     ClkDiv #(
         .IN_FREQ (CLK_FREQ),
-        .OUT_FREQ(LED_FREQ*2),
+        .OUT_FREQ(LED_FREQ*2)
     ) ledclk (
         .clk(clk),
         .rst(rst),
