@@ -4,6 +4,7 @@ TARGET = GameBrian
 BOARD ?= ecp5-evn
 IN_FREQ = 50
 BUILD_DIR = build
+DATA = data.bin
 
 ## PLLs ##
 PLLs = 60 65 70 75 80 100 150 200 250 275
@@ -24,7 +25,7 @@ $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 	-o $* \
 	-f $@ > /dev/null
 
-.PHONY: prog flash sim clean
+.PHONY: prog flash data sim clean
 .PRECIOUS: $(BUILD_DIR)/$(TARGET).bit $(BUILD_DIR)/$(TARGET).v
 
 # prog2: $(BUILD_DIR)/$(TARGET).svf
@@ -35,19 +36,24 @@ $(BUILD_DIR)/PLL%.v: | $(BUILD_DIR)
 #$(BUILD_DIR)/%.svf: $(BUILD_DIR)/%.bit ;
 
 prog: $(BUILD_DIR)/$(TARGET).bit
-	@#ecpprog -S $^
 	@echo Programming to SRAM...
+	@#ecpprog -S $^
 	@openFPGALoader -b ecp5_evn $^
 
-flash: $(BUILD_DIR)/$(TARGET).bit
-	@#ecpprog $^
+flash: $(BUILD_DIR)/$(TARGET).bit | data
 	@echo Programming to flash...
+	@#ecpprog $^
 	@openFPGALoader -b ecp5_evn -f $^
+
+data: $(DATA)
+	@echo Programming data to flash 0x100000...
+	@#ecpprog -o 0x100000 $^
+	@openFPGALoader -b ecp5_evn -f $^ -o 0x100000
 
 $(BUILD_DIR)/%.bit: $(BUILD_DIR)/%.cfg
 	@#ecppack --svf-rowsize 100000 --svf $(BUILD_DIR)/$*.svf $^ $@
 	@echo Packing to bitstream...
-	@ecppack $^ $@ --spimode fast-read
+	@ecppack $^ $@ #--spimode qspi
 
 $(BUILD_DIR)/%.cfg: src/board/$(BOARD).lpf $(BUILD_DIR)/%.json
 	@echo Placing and routing using nextpnr...
