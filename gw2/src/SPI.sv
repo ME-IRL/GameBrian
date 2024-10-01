@@ -123,14 +123,14 @@ endmodule
 
 
 module dummy_wb_master #(
-    parameter int OFFSET = 32'h100_000,
+    parameter int OFFSET = 32'h100_000
 ) (
     Wishbone_bus.M bus,
     output [7:0] debug
 );
 
     reg [4:0] counter = 0;
-    assign bus.adr = OFFSET + counter;
+    assign bus.adr = OFFSET + 32'(counter);
 
     assign bus.dat_mosi = 32'hXXXXXXXX;
     assign bus.we = 0;
@@ -144,7 +144,7 @@ module dummy_wb_master #(
             bus.cyc <= 0;
             bus.stb <= 0;
 
-            counter <= 32'h50000;
+            counter <= 0;
         end else begin
             if(idle) begin
                 div <= div + 1;
