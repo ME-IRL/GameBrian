@@ -13,7 +13,7 @@ SV_SOURCES = $(wildcard src/*.sv)
 TOP = src/board/$(BOARD).v
 SOURCES = $(PLL_FILES) $(TOP) $(SV_SOURCES)
 
-SIM = spi
+SIM = uart
 SIM_VCD = $(foreach f,$(SIM),$(BUILD_DIR)/$f.vcd)
 
 REV = $(shell printf "%d" 0x$(shell git rev-parse --short HEAD))

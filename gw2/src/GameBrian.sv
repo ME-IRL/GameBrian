@@ -40,26 +40,45 @@ module GameBrian #(
     );
 
     // UART Serial
-    assign ser_tx = ser_rx;
+    // assign ser_tx = ser_rx;
 
-    SPI spi_wires();
-    assign spi_sck = spi_wires.sck;
-    assign spi_mosi = spi_wires.mosi;
-    assign spi_wires.miso = spi_miso;
-    assign sd_cs = spi_wires.cs_n;
+    // SPI spi_wires();
+    // assign spi_sck = spi_wires.sck;
+    // assign spi_mosi = spi_wires.mosi;
+    // assign spi_wires.miso = spi_miso;
+    // assign sd_cs = spi_wires.cs_n;
+
+    // Wishbone_bus bus(clk, rst);
+    // SPI_WB  #(
+    //     .CLK_FREQ(CLK_FREQ)
+    // ) spi (
+    //     .bus(bus.S),
+    //     .spi(spi_wires.M),
+    //     .debug()
+    // );
+
+    // dummy_wb_master dummy (
+    //     .bus(bus.M),
+    //     .debug(leds)
+    // );
 
     Wishbone_bus bus(clk, rst);
-    SPI_WB  #(
-        .CLK_FREQ(CLK_FREQ)
-    ) spi (
-        .bus(bus.S),
-        .spi(spi_wires.M),
+    UART uart_wires();
+    assign ser_tx = uart_wires.tx;
+    assign uart_wires.rx = ser_rx;
+    // assign ser_tx = ser_rx;
+
+    dummy_wb_master_uart master (
+        .bus(bus.M),
         .debug()
     );
 
-    dummy_wb_master dummy (
-        .bus(bus.M),
+    UART_WB #(
+    ) uart (
+        .bus(bus.S),
+        .uart(uart_wires.M),
         .debug(leds)
     );
+
 
 endmodule
